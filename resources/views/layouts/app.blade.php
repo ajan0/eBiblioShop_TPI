@@ -76,7 +76,7 @@
     </header>
 
     {{-- Categories --}}
-    @isset($showCategories)
+    @if(isset($showCategories) && $showCategories)
         <div class="container">
             <div class="row">
                 <aside class="col-2">
