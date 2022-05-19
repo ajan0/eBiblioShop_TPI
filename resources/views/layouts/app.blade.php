@@ -11,7 +11,7 @@
     {{-- Material icons --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <title>@yield('title', config('app.name'))</title>
+    <title>{{ $title ?? config('app.name') }}</title>
 </head>
 <body>
     {{-- Header --}}
@@ -72,9 +72,31 @@
 
         </div>
     </header>
-    <main class="pt-3">
-        @yield('content')
-    </main>
+
+    {{-- Categories --}}
+    @isset($showCategories)
+        <div class="container">
+            <div class="row">
+                <aside class="col-2">
+                    <x-categories-list />
+                </aside>
+                
+                <main class="col-10 ps-4 pt-3">
+                    {{ $slot }}
+                </main>
+            </div>
+        </div>
+        
+    @else
+        <div class="container">
+            <div class="row">
+                <main class="col pt-3">
+                    {{ $slot }}
+                </main>
+            </div>
+        </div>
+    @endisset
+    
 
     {{-- Footer --}}
     <footer class="mt-4 bg-gray">

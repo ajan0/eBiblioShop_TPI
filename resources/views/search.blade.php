@@ -1,8 +1,7 @@
-@extends('templates.main')
-
-@section('content')
-<div class="container">
+<x-app-layout :show-categories="true">
     <div class="row">
+        <div class="col">
+            hey
+        </div>
     </div>
-</div>
-@endsection
+</x-app-layout>
