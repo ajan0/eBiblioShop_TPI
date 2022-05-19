@@ -13,9 +13,9 @@ class AppLayout extends Component
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($showCategories = false)
     {
-        $this->showCategories = false;
+        $this->showCategories = $showCategories;
     }
 
     /**

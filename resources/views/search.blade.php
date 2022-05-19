@@ -1,4 +1,4 @@
-<x-app-layout :show-categories="true">
+<x-app-layout :showCategories="true">
     <div class="row">
         <div class="col">
             <h1 class="h2 fw-normal">Résultats pour <span class="fw-semibold">{{ $query }}<span></h1>

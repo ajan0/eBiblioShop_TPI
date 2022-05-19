@@ -1,4 +1,4 @@
-<x-app-layout :show-categories="true">
+<x-app-layout :showCategories="true">
     <div class="row">
         {{-- Nouveautés --}}
         <section class="col-7 mb-3">

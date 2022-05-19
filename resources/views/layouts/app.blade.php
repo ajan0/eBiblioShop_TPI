@@ -63,7 +63,7 @@
                             </li>
                         </ul>
                     @else
-                        <a class="d-flex align-items-center" href="">
+                        <a class="d-flex align-items-center" href="{{ route('login') }}">
                             <span class="material-icons">account_circle</span>
                             <span class="ps-2">Connexion</span>
                         </a>
@@ -76,32 +76,22 @@
     </header>
 
     {{-- Categories --}}
-    @if(isset($showCategories) && $showCategories)
-        <div class="container">
-            <div class="row">
-                <aside class="col-2">
+    <div class="container">
+        <div class="row">
+            @if($showCategories)
+                <aside class="col-2 pt-4">
                     <x-categories-list />
                 </aside>
-                
-                <main class="col-10 ps-4 pt-3">
-                    {{ $slot }}
-                </main>
-            </div>
+            @endif
+            <main class="{{ $showCategories ? 'col-10 ps-4 pt-3' : 'col pt-3' }}">
+                {{ $slot }}
+            </main>
         </div>
-        
-    @else
-        <div class="container">
-            <div class="row">
-                <main class="col pt-3">
-                    {{ $slot }}
-                </main>
-            </div>
-        </div>
-    @endisset
+    </div>
     
 
     {{-- Footer --}}
-    <footer class="mt-4 bg-gray">
+    <footer class="mt-5 bg-gray">
         <div class="container">
             {{-- icons row --}}
             <div class="row">
