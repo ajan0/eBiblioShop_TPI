@@ -20,13 +20,15 @@
             <div class="row align-items-center">
                 {{-- Logo --}}
                 <div class="col-2">
-                    <h1 class="fw-bold text-primary fs-2 m-0">Larastripe</h1>
+                    <a href="{{ route('home') }}">
+                        <h1 class="fw-bold text-primary fs-2 m-0">Larastripe</h1>                    
+                    </a>
                 </div>
 
                 {{-- Search bar --}}
                 <div class="col-7 ps-4 d-flex align-items-center">
-                    <form class="w-100" method="GET">
-                        <input type="text" class="form-control" placeholder="Titre, auteur, mot clé" aria-label="Username" aria-describedby="basic-addon1">
+                    <form class="w-100" action="{{ route('search') }}" method="GET">
+                        <input type="text" name="query" class="form-control" placeholder="Titre, auteur, mot clé" aria-label="Username" aria-describedby="basic-addon1">
                     </form>
                         
                 </div>
@@ -170,7 +172,9 @@
                     </div>
                 </div>
                 <div class="col-3 d-flex justify-content-end align-items-center">
-                    <h1 class="fw-bold text-primary fs-2 m-0">Larastripe</h1>
+                    <a href="{{ route('home') }}">
+                        <h1 class="fw-bold text-primary fs-2 m-0">Larastripe</h1>                    
+                    </a>
                 </div>
             </div>
         </div>
