@@ -92,37 +92,17 @@
 
     {{-- Footer --}}
     <footer class="mt-5 bg-gray">
-        <div class="container">
-            {{-- icons row --}}
-            <div class="row">
-                {{-- telephone icon --}}
-                <div class="col-3">
-                    <div class="d-flex justify-content-center my-4">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.82667 14.3867C10.7467 18.16 13.84 21.24 17.6133 23.1733L20.5467 20.24C20.9067 19.88 21.44 19.76 21.9067 19.92C23.4 20.4133 25.0133 20.68 26.6667 20.68C27.4 20.68 28 21.28 28 22.0133V26.6667C28 27.4 27.4 28 26.6667 28C14.1467 28 4 17.8533 4 5.33333C4 4.6 4.6 4 5.33333 4H10C10.7333 4 11.3333 4.6 11.3333 5.33333C11.3333 7 11.6 8.6 12.0933 10.0933C12.24 10.56 12.1333 11.08 11.76 11.4533L8.82667 14.3867Z" fill="black"/></svg>
-                    </div>
-                </div>
-
-                <div class="col-3"></div>
-                <div class="col-3"></div>
-
-                {{-- helpdesk icon --}}
-                <div class="col-3">
-                    <div class="d-flex justify-content-center my-4">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 12.052C6 6.5 10.478 2 16 2C21.522 2 26 6.5 26 12.052V19.232C26 20.816 24.72 22.102 23.142 22.102H20.286C20.0979 22.1015 19.9118 22.0639 19.7383 21.9915C19.5648 21.919 19.4072 21.8131 19.2746 21.6798C19.142 21.5464 19.037 21.3882 18.9655 21.2143C18.894 21.0404 18.8575 20.8541 18.858 20.666V14.924C18.858 14.13 19.498 13.488 20.286 13.488H23.858V12.052C23.858 7.69 20.338 4.152 16 4.152C11.66 4.152 8.142 7.69 8.142 12.052V13.488H11.714C12.504 13.488 13.142 14.13 13.142 14.924V20.666C13.142 21.46 12.502 22.102 11.714 22.102H8.86C8.61846 22.1028 8.37783 22.0725 8.144 22.012V22.462C8.144 24.172 9.466 25.572 11.14 25.684L11.36 25.692H12.97C13.1902 25.0638 13.6 24.5195 14.1427 24.134C14.6854 23.7486 15.3343 23.541 16 23.54C16.4234 23.5408 16.8424 23.6251 17.2332 23.788C17.6239 23.9509 17.9787 24.1893 18.2773 24.4895C18.5758 24.7897 18.8122 25.1458 18.9729 25.5375C19.1337 25.9291 19.2156 26.3486 19.214 26.772C19.214 28.554 17.774 30 16 30C14.6 30 13.41 29.1 12.968 27.846H11.36C9.98481 27.8426 8.66333 27.3118 7.66795 26.3629C6.67256 25.414 6.07914 24.1195 6.01 22.746L6 22.464V12.052Z" fill="black"/>
-                            </svg>
-                            
-                    </div>
-                </div>
-            </div>
+        <div class="container pt-5">
             <div class="row">
                 <div class="col-3 py-4 pe-5">
-                    <div>
-                        <span class="h4"><a class="text-reset" href="tel:+312345678">031 234 56 78</a></span>
+                    <div class="d-flex justify-items-center">
+                        <svg class="me-3" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.82667 14.3867C10.7467 18.16 13.84 21.24 17.6133 23.1733L20.5467 20.24C20.9067 19.88 21.44 19.76 21.9067 19.92C23.4 20.4133 25.0133 20.68 26.6667 20.68C27.4 20.68 28 21.28 28 22.0133V26.6667C28 27.4 27.4 28 26.6667 28C14.1467 28 4 17.8533 4 5.33333C4 4.6 4.6 4 5.33333 4H10C10.7333 4 11.3333 4.6 11.3333 5.33333C11.3333 7 11.6 8.6 12.0933 10.0933C12.24 10.56 12.1333 11.08 11.76 11.4533L8.82667 14.3867Z" fill="black"/></svg>
+                        <a class="text-reset h4 m-0" href="tel:+312345678">123 456 78 99</a>
+                        {{-- telephone icon --}}
                     </div>
 
                     <div class="my-4">
-                        <p>Vous avez des questions ou vous souhaitez commander par téléphone? Notre service clients est là pour vous aider.</p>
+                        <p>Vous avez des questions ou vous souhaitez commander par téléphone? N'hesitez pas de nous contacter si vous avez des questions ou si vous avez besoin d'aider.</p>
                     </div>
 
                     <div>
@@ -131,7 +111,7 @@
                 </div>
 
                 <div class="col-3 pt-4">
-                    <p class="fw-bold py4">L'entreprise</p>
+                    <p class="fw-bold py4">Le site</p>
                     <ul class="list-unstyled">
                         <li class="my-2"><a class="text-reset" href="">Livraison et retrait</a></li>
                         <li class="my-2"><a class="text-reset" href="">Modes de paiement</a></li>
@@ -144,7 +124,7 @@
 
                 <div class="col-3 pt-4">
                     <p class="fw-bold mb-1">Aide et contact</p>
-                    <p>Notre service Helpedesk est disponible 24/24 pour vous aider.</p>
+                    <p>N'hesitez pas de nous contacter si vous avez des questions</p>
                     <a href="{{ url('/contact') }}" class="btn w-100 btn-primary">Contact</a>
                 </div>
 
