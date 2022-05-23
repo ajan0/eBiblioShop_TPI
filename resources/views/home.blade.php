@@ -2,7 +2,7 @@
     <div class="row">
         {{-- Featured item --}}
         <section class="col mb-3">
-            <h1 class="h3 py-3">Choix d'aujourd'hui</h1>
+            <h1 class="h3 py-3">Nos choix</h1>
             <x-books.card />
         </section>
 
