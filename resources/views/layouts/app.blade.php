@@ -21,7 +21,7 @@
                 {{-- Logo --}}
                 <div class="col-2">
                     <a href="{{ route('home') }}">
-                        <h1 class="fw-bold text-primary fs-2 m-0">Larastripe</h1>                    
+                        <h1 class="fw-bold text-primary fs-2 m-0">eBiblioShop</h1>                    
                     </a>
                 </div>
 
@@ -136,5 +136,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

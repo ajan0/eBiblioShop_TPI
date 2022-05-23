@@ -19,3 +19,9 @@ Breadcrumbs::for('search', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Recherche');
 });
+
+// Accueil > Profil
+Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Profile');
+});
