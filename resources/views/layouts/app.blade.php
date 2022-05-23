@@ -41,11 +41,6 @@
                     {{-- Shopping cart --}}
                     <a class="d-flex me-2" href="" type="button">
                         <span class="material-icons">shopping_cart</span>
-                        {{-- @if (count(Cart::content()) > 0)
-                            <span class="badge rounded-pill bg-danger">
-                                {{ count(Cart::content()) }}
-                            </span>                                
-                        @endif --}}
                     </a>
                     {{-- Login button --}}
                     @auth
@@ -75,7 +70,7 @@
         </div>
     </header>
 
-    {{-- Categories --}}
+    {{-- Main --}}
     <div class="container">
         <div class="row">
             @if($showCategories)
@@ -84,11 +79,13 @@
                 </aside>
             @endif
             <main class="{{ $showCategories ? 'col-10 ps-4 pt-3' : 'col pt-3' }}">
+                @if($showBreadcrumbs)
+                    {{ Breadcrumbs::render() }}
+                @endif
                 {{ $slot }}
             </main>
         </div>
     </div>
-    
 
     {{-- Footer --}}
     <footer class="mt-5 bg-gray">
@@ -110,17 +107,7 @@
                     </div>
                 </div>
 
-                <div class="col-3 pt-4">
-                    <p class="fw-bold py4">Le site</p>
-                    <ul class="list-unstyled">
-                        <li class="my-2"><a class="text-reset" href="">Livraison et retrait</a></li>
-                        <li class="my-2"><a class="text-reset" href="">Modes de paiement</a></li>
-                        <li class="my-2"><a class="text-reset" href="">Contact</a></li>
-                        <li class="my-2"><a class="text-reset" href="">FAQ</a></li>
-                        <li class="my-2"><a class="text-reset" href="">Mentions légales</a></li>
-                    </ul>
-                </div>
-                <div class="col-3"></div>
+                <div class="col-6"></div>
 
                 <div class="col-3 pt-4">
                     <p class="fw-bold mb-1">Aide et contact</p>

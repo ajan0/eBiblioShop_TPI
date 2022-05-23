@@ -1,4 +1,4 @@
-<x-app-layout :showCategories="true">
+<x-app-layout :showCategories="true" :showBreadcrumbs="true">
 
     <h1 class="h2 mb-4">Aperçu du livre</h1>
 

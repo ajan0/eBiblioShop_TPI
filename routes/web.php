@@ -26,7 +26,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 // Books
-Route::get('/books/{book}', [BookController::class, 'show']);
+Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 
 // Cart
 Route::get('/cart', [CartController::class, 'index']);

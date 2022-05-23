@@ -11335,7 +11335,6 @@ textarea.form-control-lg {
   width: 150px;
 }
 
-/* Rules for sizing material icons. */
 .material-icons.md-18 {
   font-size: 18px;
 }
@@ -11350,4 +11349,8 @@ textarea.form-control-lg {
 
 .material-icons.md-48 {
   font-size: 48px;
+}
+
+.breadcrumb {
+  padding: 0 !important;
 }

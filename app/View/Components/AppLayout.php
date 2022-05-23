@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
+    public $showBreadcrumbs;
     public $showCategories;
 
     /**
@@ -13,9 +14,10 @@ class AppLayout extends Component
      *
      * @return void
      */
-    public function __construct($showCategories = false)
+    public function __construct($showCategories = false, $showBreadcrumbs = false)
     {
         $this->showCategories = $showCategories;
+        $this->showBreadcrumbs = $showBreadcrumbs;
     }
 
     /**
