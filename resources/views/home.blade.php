@@ -12,11 +12,11 @@
         <section class="col my-3">
             <h1 class="h3 py-3">Assortiment gratuit</h1>
             <div class="d-flex">
-                <x-books.cover class="me-3 shadow-lg" />
-                <x-books.cover class="me-3 shadow-lg" />
-                <x-books.cover class="me-3 shadow-lg" />
-                <x-books.cover class="me-3 shadow-lg" />
-                <x-books.cover class="me-3 shadow-lg" />
+                @forelse ($books_free as $book)
+                    <x-books.cover :book="$book" class="me-3 shadow-lg" />
+                @empty
+                    Pas de livres à afficher pour l'instant.
+                @endforelse
             </div>
         </section>
 
@@ -27,11 +27,11 @@
         <section class="col my-3">
             <h1 class="h3 py-3">Récemment ajoutés</h1>
             <div class="d-flex">
-                <x-books.cover class="me-3 shadow" />
-                <x-books.cover class="me-3 shadow" />
-                <x-books.cover class="me-3 shadow" />
-                <x-books.cover class="me-3 shadow" />
-                <x-books.cover class="me-3 shadow" />
+                @forelse ($books_recent as $book)
+                    <x-books.cover :book="$book" class="me-3 shadow-lg" />
+                @empty
+                    Pas de livres à afficher pour l'instant.
+                @endforelse
             </div>
         </section>
 

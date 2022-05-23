@@ -31,6 +31,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 1,
             'category_id' => 1,
+            'created_at' => now(),
         ]);
 
         DB::table('books')->insert([
@@ -45,6 +46,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 2,
             'category_id' => 1,
+            'created_at' => now(),
         ]);
 
         DB::table('books')->insert([
@@ -59,6 +61,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 3,
             'category_id' => 3,
+            'created_at' => now(),
         ]);
 
         DB::table('books')->insert([
@@ -73,6 +76,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 4,
             'category_id' => 4,
+            'created_at' => now(),
         ]);
 
         DB::table('books')->insert([
@@ -88,6 +92,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 5,
             'category_id' => 5,
+            'created_at' => now(),
         ]);
 
         DB::table('books')->insert([
@@ -102,6 +107,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 6,
             'category_id' => 6,
+            'created_at' => now(),
         ]);
 
         DB::table('books')->insert([
@@ -117,6 +123,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 4,
             'category_id' => 7,
+            'created_at' => now(),
         ]);
 
         DB::table('books')->insert([
@@ -131,6 +138,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 7,
             'category_id' => 8,
+            'created_at' => now(),
         ]);
 
         DB::table('books')->insert([
@@ -145,6 +153,7 @@ class BookSeeder extends Seeder
             'user_id' => $users->random(),
             'editor_id' => 8,
             'category_id' => 1,
+            'created_at' => now(),
         ]);
     }
 }

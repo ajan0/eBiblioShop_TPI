@@ -1,6 +1,6 @@
 <article {{ $attributes }}>
     {{-- Cover --}}
     <div>
-        <img class="book-cover-sm" src="{{ asset('img/covers/1.jpg') }}" alt="{{ 'title' }}">
+        <img class="book-cover-sm" src="{{ asset($book->cover_path) }}" alt="{{ 'title' }}">
     </div>
 </article>

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('editor_id')->constrained();
+            $table->timestamp('created_at');
         });
     }
 
