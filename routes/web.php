@@ -40,3 +40,8 @@ Route::get('/reset-password', [NewPasswordController::class, 'create'])->name('r
 Route::get('/verify-email', [VerifyEmailController::class, 'index'])->name('verify-email');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Dashboard
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
+    Route::view('/', 'admin.index');
+});
