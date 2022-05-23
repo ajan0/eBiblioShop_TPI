@@ -1,22 +1,37 @@
 <x-app-layout :showCategories="true">
     <div class="row">
-        {{-- Nouveautés --}}
-        <section class="col-7 mb-3">
-            <h1 class="h3 py-3">Nouveautés</h1>
+        {{-- Featured item --}}
+        <section class="col mb-3">
+            <h1 class="h3 py-3">Choix d'aujourd'hui</h1>
             <x-books.card />
         </section>
 
     </div>
     <div class="row">
-        {{-- Selection --}}
-        <section class="col-7 my-3">
-            <h1 class="h3 py-3">Selection</h1>
+        {{-- Books for free --}}
+        <section class="col my-3">
+            <h1 class="h3 py-3">Assortiment gratuit</h1>
             <div class="d-flex">
-                <x-books.cover class="me-3" />
-                <x-books.cover class="me-3" />
-                <x-books.cover class="me-3" />
-                <x-books.cover class="me-3" />
-                <x-books.cover class="me-3" />
+                <x-books.cover class="me-3 shadow-lg" />
+                <x-books.cover class="me-3 shadow-lg" />
+                <x-books.cover class="me-3 shadow-lg" />
+                <x-books.cover class="me-3 shadow-lg" />
+                <x-books.cover class="me-3 shadow-lg" />
+            </div>
+        </section>
+
+    </div>
+
+    <div class="row">
+        {{-- Most recent --}}
+        <section class="col my-3">
+            <h1 class="h3 py-3">Récemment ajoutés</h1>
+            <div class="d-flex">
+                <x-books.cover class="me-3 shadow" />
+                <x-books.cover class="me-3 shadow" />
+                <x-books.cover class="me-3 shadow" />
+                <x-books.cover class="me-3 shadow" />
+                <x-books.cover class="me-3 shadow" />
             </div>
         </section>
 
