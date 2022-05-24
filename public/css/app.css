@@ -11332,7 +11332,10 @@ textarea.form-control-lg {
 }
 
 .book-cover-sm {
-  width: 150px;
+  width: 136px;
+  height: 210px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .material-icons.md-18 {

@@ -13,7 +13,7 @@
             <h1 class="h3 py-3">Assortiment gratuit</h1>
             <div class="d-flex">
                 @forelse ($books_free as $book)
-                    <x-books.cover :book="$book" class="me-3 shadow-lg" />
+                    <x-books.cover :book="$book" class="me-4 shadow-lg" />
                 @empty
                     Pas de livres à afficher pour l'instant.
                 @endforelse
@@ -28,7 +28,7 @@
             <h1 class="h3 py-3">Récemment ajoutés</h1>
             <div class="d-flex">
                 @forelse ($books_recent as $book)
-                    <x-books.cover :book="$book" class="me-3 shadow-lg" />
+                    <x-books.cover :book="$book" class="me-4 shadow-lg" />
                 @empty
                     Pas de livres à afficher pour l'instant.
                 @endforelse
