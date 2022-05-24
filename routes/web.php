@@ -32,10 +32,6 @@ Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show')
 // Cart
 Route::get('/cart', [CartController::class, 'index']);
 
-// Auth
-Route::get('/reset-password', [NewPasswordController::class, 'create'])->name('reset-password');
-Route::get('/verify-email', [VerifyEmailController::class, 'index'])->name('verify-email');
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard');
 
