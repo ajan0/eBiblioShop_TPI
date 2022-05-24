@@ -19,7 +19,7 @@ class DashboardController extends Controller
             'lastname' => $request->lastname,
             'gender' => $request->gender,
         ]);
-
+        
         return back();
     }
 }

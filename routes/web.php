@@ -33,7 +33,6 @@ Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show')
 Route::get('/cart', [CartController::class, 'index']);
 
 // Auth
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('forgot-password');
 Route::get('/reset-password', [NewPasswordController::class, 'create'])->name('reset-password');
 Route::get('/verify-email', [VerifyEmailController::class, 'index'])->name('verify-email');
