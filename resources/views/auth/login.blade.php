@@ -8,14 +8,15 @@
 <div class="row justify-content-center my-3">
     <div class="col-3">
         <h2 class="h3 fw-normal mb-4">Se connecter avec un compte client</h2>
-        <form action="">
+        <form action={{ route('login') }} method="POST">
+            @csrf
             <div class="mb-3">
                 <label class="form-label">Adresse E-mail</label>
-                <input type="email" class="form-control" placeholder="nom@exemple.com" required autofocus>
+                <input type="email" name="email" class="form-control" placeholder="nom@exemple.com" required autofocus>
             </div>
             <div class="mb-3">
                 <label class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" required>
+                <input type="password" name="password" class="form-control" required>
                 <a href="{{ route('forgot-password') }}">Avez-vous oublié votre mot de passe ?</a>
             </div>
             <input class="btn btn-primary w-100 my-2" type="submit" value="Se connecter">

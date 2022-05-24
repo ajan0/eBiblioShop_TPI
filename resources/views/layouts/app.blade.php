@@ -45,13 +45,13 @@
                     {{-- Login button --}}
                     @auth
                         <a class="text-black dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->username }}
+                            {{ Auth::user()->fullname }}
                         </a>                            
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Profil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <form class="logout-form" method="POST" action="">
+                                <form class="logout-form" method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a class="dropdown-item" href="#" onclick="document.querySelector('.logout-form').submit()">Déconnexion</a>
                                 </form>
