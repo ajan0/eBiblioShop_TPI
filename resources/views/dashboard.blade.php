@@ -49,10 +49,10 @@
                                 {{-- Input -> Title --}}
                                 <div class="form-group mb-3">
                                     <label class="text-gray py-2" for="">Titre</label>
-                                    <select class="form-control" name="gender">
-                                        <option value="male">M.</option>
-                                        <option value="female">Mme</option>
-                                        <option value="other">Autre</option>
+                                    <select class="form-select" name="gender">
+                                        <option value="male" {{ auth()->user()->gender === 'male' ? 'selected' : '' }}>M.</option>
+                                        <option value="female" {{ auth()->user()->gender === 'female' ? 'selected' : '' }}>Mme</option>
+                                        <option value="other" {{ auth()->user()->gender === 'other' ? 'selected' : '' }}>Autre</option>
                                     </select>
                                 </div>
 
