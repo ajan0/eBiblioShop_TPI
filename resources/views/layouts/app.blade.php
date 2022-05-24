@@ -130,7 +130,7 @@
                 </div>
                 <div class="col-3 d-flex justify-content-end align-items-center">
                     <a href="{{ route('home') }}">
-                        <h1 class="fw-bold text-primary fs-2 m-0">Larastripe</h1>                    
+                        <h1 class="fw-bold text-primary fs-2 m-0">eBiblioShop</h1>                    
                     </a>
                 </div>
             </div>
