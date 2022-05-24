@@ -112,7 +112,7 @@
                 <div class="col-3 pt-4">
                     <p class="fw-bold mb-1">Aide et contact</p>
                     <p>N'hesitez pas de nous contacter si vous avez des questions</p>
-                    <a href="{{ url('/contact') }}" class="btn w-100 btn-primary">Contact</a>
+                    <a href="{{ url('mailto:contact@ebiblioshop.ch') }}" class="btn w-100 btn-primary">Contact</a>
                 </div>
 
             </div>
