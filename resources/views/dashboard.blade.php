@@ -44,32 +44,34 @@
                     <div class="row">
                         <div class="col-6">
                             <h1 class="h5">Information</h1>
-                            <form action="">
+                            <form action="{{ route('dashboard') }}" method="POST">
+                                @csrf
                                 {{-- Input -> Title --}}
                                 <div class="form-group mb-3">
                                     <label class="text-gray py-2" for="">Titre</label>
-                                    <select class="form-control">
-                                        <option value="">Mr.</option>
-                                        <option value="">Ms.</option>
+                                    <select class="form-control" name="gender">
+                                        <option value="male">M.</option>
+                                        <option value="female">Mme</option>
+                                        <option value="other">Autre</option>
                                     </select>
                                 </div>
 
                                 {{-- Input -> Firstname --}}
                                 <div class="form-group mb-3">
                                     <label class="text-gray py-2" for="">Prénom</label>
-                                    <input type="text" name="" id="" class="form-control" value="Ahmad">
+                                    <x-input type="text" name="firstname" value="{{ auth()->user()->firstname }}" />
                                 </div>
 
                                 {{-- Input -> Lastname --}}
                                 <div class="form-group mb-3">
                                     <label class="text-gray py-2" for="">Nom</label>
-                                    <input type="text" name="" id="" class="form-control" value="Jano">
+                                    <x-input type="text" name="lastname" value="{{ auth()->user()->lastname }}" />
                                 </div>
                                 
                                 {{-- Input -> email --}}
                                 <div class="form-group mb-3">
-                                    <label class="text-gray py-2" for="">Adresse e-mail privée</label>
-                                    <input type="text" name="" id="" class="form-control" value="mail@domain.com">
+                                    <label class="text-gray py-2">Adresse e-mail privée</label>
+                                    <input type="text" class="form-control" value="{{ auth()->user()->email }}" disabled>
                                 </div>
 
                                 <div class="from-group d-flex">
