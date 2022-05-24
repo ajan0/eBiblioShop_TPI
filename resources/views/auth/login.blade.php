@@ -17,7 +17,7 @@
             <div class="mb-3">
                 <label class="form-label">Mot de passe</label>
                 <input type="password" name="password" class="form-control" required>
-                <a href="{{ route('forgot-password') }}">Avez-vous oublié votre mot de passe ?</a>
+                <a href="{{ route('password.request') }}">Avez-vous oublié votre mot de passe ?</a>
             </div>
             <input class="btn btn-primary w-100 my-2" type="submit" value="Se connecter">
         </form>

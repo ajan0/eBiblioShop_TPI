@@ -8,11 +8,11 @@
     <div class="row justify-content-center my-3">
         <div class="col-4">
             <p>Veuillez indiquer l’adresse e-mail rattachée à votre compte. Vous recevez alors immédiatement un message contenant un lien pour modifier votre mot de passe.</p>
-                <form method="POST" action="{{ route('password.email') }}">
-                @csrf
-        
+                <form method="POST" action="{{ url('forgot-password') }}">
+                @csrf        
                 <!-- Email Address -->
-                <input id="email" class="form-control d-block mt-1 w-100" type="email" name="email" value="{{ old('email') }}" placeholder="Adresse e-mail" required autofocus/>
+                <x-input type="email" name="email" placeholder="Adresse e-mail" />
+                {{-- <input id="email" class="form-control d-block mt-1 w-100" type="email" name="email" value="{{ old('email') }}" placeholder="Adresse e-mail" required autofocus/> --}}
                 
                 <div class="my-3">
                     <button class="btn btn-primary w-100" type="submit">
