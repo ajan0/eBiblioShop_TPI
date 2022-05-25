@@ -12,11 +12,11 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label">Adresse E-mail</label>
-                <input type="email" name="email" class="form-control" placeholder="nom@exemple.com" required autofocus>
+                <x-input type="email" name="email" placeholder="nom@exemple.com" required autofocus />
             </div>
             <div class="mb-3">
                 <label class="form-label">Mot de passe</label>
-                <input type="password" name="password" class="form-control" required>
+                <x-input type="password" name="password" required />
                 <a href="{{ route('password.request') }}">Avez-vous oublié votre mot de passe ?</a>
             </div>
             <input class="btn btn-primary w-100 my-2" type="submit" value="Se connecter">
