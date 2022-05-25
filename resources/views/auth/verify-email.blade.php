@@ -1,4 +1,4 @@
-<x-app-layout :showCategories="false">
+<x-app-layout :showCategories="false" :fullwidth="true">
 
     <div class="row justify-content-center mt-5 mb-3">
         <div class="col-4">

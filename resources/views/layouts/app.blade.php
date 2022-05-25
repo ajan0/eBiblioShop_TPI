@@ -33,21 +33,13 @@
                         
                 </div>
                 {{-- User menu --}}
-                <div class="col-3 d-flex justify-content-end align-items-center">
-                    {{-- Pinned items --}}
-                    <a class="d-flex me-2" href="" type="button">
-                        <span class="material-icons">push_pin</span>
-                    </a>
-                    {{-- Shopping cart --}}
-                    <a class="d-flex me-2" href="" type="button">
-                        <span class="material-icons">shopping_cart</span>
-                    </a>
+                <div class="col-3 d-flex flex-row-reverse align-items-center">
                     {{-- Login button --}}
                     @auth
                         <a class="text-black dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->fullname }}
                         </a>                            
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu mt-2" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Profil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
@@ -64,6 +56,22 @@
                         </a>
                     @endauth
 
+                    {{-- Shopping cart --}}
+                    <a class="d-flex me-2" href="" type="button">
+                        <span class="material-icons">shopping_cart</span>
+                    </a>
+
+                    {{-- Pinned items --}}
+                    <a class="d-flex me-2" href="" type="button">
+                        <span class="material-icons">push_pin</span>
+                    </a>
+
+                    {{-- Create new book --}}
+                    @auth
+                        <a href="{{ route('books.create') }}" class="btn btn-sm btn-primary me-auto ms-1">
+                            Ajouter un livre
+                        </a>                        
+                    @endauth
                 </div>
             </div>
 
@@ -73,17 +81,28 @@
     {{-- Main --}}
     <div class="container">
         <div class="row">
-            @if($showCategories)
-                <aside class="col-2 pt-4">
-                    <x-categories-list />
-                </aside>
-            @endif
-            <main class="{{ $showCategories ? 'col-10 ps-4 pt-3' : 'col pt-3' }}">
-                @if($showBreadcrumbs)
-                    {{ Breadcrumbs::render() }}
+            @if ($fullwidth)
+                <main class="col pt-3">
+                    @if($showBreadcrumbs)
+                        {{ Breadcrumbs::render() }}
+                    @endif
+                    {{ $slot }}
+                </main>
+            @else
+                @if($showCategories)
+                    <aside class="col-2 pt-4">
+                        <x-categories-list />
+                    </aside>
+                @else
+                    <div class="col-2"></div>
                 @endif
-                {{ $slot }}
-            </main>
+                <main class="col-10 ps-4 pt-3">
+                    @if($showBreadcrumbs)
+                        {{ Breadcrumbs::render() }}
+                    @endif
+                    {{ $slot }}
+                </main>
+            @endif            
         </div>
     </div>
 

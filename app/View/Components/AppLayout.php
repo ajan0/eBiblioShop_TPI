@@ -8,16 +8,18 @@ class AppLayout extends Component
 {
     public $showBreadcrumbs;
     public $showCategories;
+    public $fullwidth;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($showCategories = false, $showBreadcrumbs = false)
+    public function __construct($showCategories = false, $showBreadcrumbs = false, $fullwidth = false)
     {
         $this->showCategories = $showCategories;
         $this->showBreadcrumbs = $showBreadcrumbs;
+        $this->fullwidth = $fullwidth;
     }
 
     /**
