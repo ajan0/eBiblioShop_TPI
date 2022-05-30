@@ -17,6 +17,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('total')->unsigned();
+            $table->string('status', 10)->default('pending');
+            $table->foreignId('shipping_address')->references('id')->on('addresses')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

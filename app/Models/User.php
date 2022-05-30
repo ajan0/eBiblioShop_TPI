@@ -44,4 +44,24 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function shipping_address()
+    {
+        return $this->belongsTo(CustomerAddress::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(CustomerAddress::class)->with('address')->where('type', 'shipping');
+    }
 }

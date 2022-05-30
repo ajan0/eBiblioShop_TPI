@@ -41,3 +41,9 @@ Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('profile');
 });
+
+// Accueil > Cart
+Breadcrumbs::for('cart.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('panier d\'achat');
+});

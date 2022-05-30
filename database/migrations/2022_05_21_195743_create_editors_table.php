@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('editors', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname', 255)->unique();
-            $table->string('alias', 255)->nullable();
+            $table->string('name')->unique();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('editors');
     }
 };

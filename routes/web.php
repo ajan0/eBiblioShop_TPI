@@ -37,14 +37,20 @@ Route::group(['middleware' => 'auth'], function(){
     Route::prefix('dashboard')->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::post('/', [DashboardController::class, 'store'])->name('dashboard.store');
+        
+        // Addresses
+        Route::resource('addresses', CustomerAddressController::class);
     });
+    
 });
 
 Route::resource('books', BookController::class)->only(['show']);
 
 // Cart
-Route::get('/cart', [CartController::class, 'index']);
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/{book}', [CartController::class, 'store'])->name('cart.store');
+Route::put('/cart/{rowId}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/{rowId}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 // Dashboard
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {

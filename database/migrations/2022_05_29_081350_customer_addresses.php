@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('customer_addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname', 255)->unique();
-            $table->string('alias', 255)->nullable();
+            $table->string('type', 10);
+            $table->boolean('is_default')->default(false);
+            $table->foreignId('address_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('customer_addresses');
     }
 };
