@@ -3,7 +3,7 @@
         {{-- Featured item --}}
         <section class="col mb-3">
             <h1 class="h3 py-3">Nos choix</h1>
-            <x-books.card />
+            <x-books.card :book="$book_feautred" />
         </section>
 
     </div>

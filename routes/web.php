@@ -32,6 +32,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/books/create/step1', [BookController::class, 'createStepOne'])->name('books.create.step1');
     Route::post('/books/create/step1', [BookController::class, 'storeStepOne'])->name('books.store.step1');
     Route::delete('/books', [BookController::class, 'destroySaved'])->name('books.destroySaved');
+
+    // Dashboard
+    Route::prefix('dashboard')->group(function(){
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::post('/', [DashboardController::class, 'store'])->name('dashboard.store');
+    });
 });
 
 Route::resource('books', BookController::class)->only(['show']);
@@ -39,9 +45,6 @@ Route::resource('books', BookController::class)->only(['show']);
 // Cart
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart/{book}', [CartController::class, 'store'])->name('cart.store');
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard');
 
 // Dashboard
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {

@@ -28,7 +28,7 @@
                 {{-- Search bar --}}
                 <div class="col-7 ps-4 d-flex align-items-center">
                     <form class="w-100" action="{{ route('search') }}" method="GET">
-                        <input type="text" name="query" class="form-control" placeholder="Titre, auteur, mot clé" aria-label="Username" aria-describedby="basic-addon1">
+                        <x-inputs.field type="text" name="query" placeholder="Titre, numéro ISBN, auteur, mot clé" value="{{ request()->input('query') }}" required />
                     </form>
                         
                 </div>
@@ -39,13 +39,13 @@
                         <a class="text-black dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->fullname }}
                         </a>                            
-                        <ul class="dropdown-menu mt-2" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Profil</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                        <ul class="dropdown-menu mt-2 py-2" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item py-1" href="{{ route('dashboard.index') }}">Profil</a></li>
+                            <li><hr class="dropdown-divider my-1"></li>
                             <li>
                                 <form class="logout-form" method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <a class="dropdown-item" href="#" onclick="document.querySelector('.logout-form').submit()">Déconnexion</a>
+                                    <a class="dropdown-item py-1" href="#" onclick="document.querySelector('.logout-form').submit()">Déconnexion</a>
                                 </form>
                             </li>
                         </ul>
@@ -57,7 +57,7 @@
                     @endauth
 
                     {{-- Shopping cart --}}
-                    <a class="d-flex me-2" href="" type="button">
+                    <a class="d-flex me-2 position-relative" href="" type="button">
                         <span class="material-icons">shopping_cart</span>
                     </a>
 
@@ -157,5 +157,7 @@
     </footer>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    
+    @stack('scripts')
 </body>
 </html>
