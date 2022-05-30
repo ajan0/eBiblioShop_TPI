@@ -68,7 +68,7 @@
 
                     {{-- Create new book --}}
                     @auth
-                        <a href="{{ route('books.create') }}" class="btn btn-sm btn-primary me-auto ms-1">
+                        <a href="{{ route('books.create.step1') }}" class="btn btn-sm btn-primary me-auto ms-1">
                             Ajouter un livre
                         </a>                        
                     @endauth

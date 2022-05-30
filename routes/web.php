@@ -27,10 +27,18 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 // Books
-Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
+Route::group(['middleware' => 'auth'], function(){
+    Route::resource('books', BookController::class)->only(['create', 'store', 'destroy']);
+    Route::get('/books/create/step1', [BookController::class, 'createStepOne'])->name('books.create.step1');
+    Route::post('/books/create/step1', [BookController::class, 'storeStepOne'])->name('books.store.step1');
+    Route::delete('/books', [BookController::class, 'destroySaved'])->name('books.destroySaved');
+});
+
+Route::resource('books', BookController::class)->only(['show']);
 
 // Cart
 Route::get('/cart', [CartController::class, 'index']);
+Route::post('/cart/{book}', [CartController::class, 'store'])->name('cart.store');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard');

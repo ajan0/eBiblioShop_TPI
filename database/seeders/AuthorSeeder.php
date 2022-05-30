@@ -16,58 +16,47 @@ class AuthorSeeder extends Seeder
     public function run()
     {
         DB::table('authors')->insert([
-            'firstname' => 'Antoine',
-            'lastname' => 'Balzeau',
+            'fullname' => 'Antoine Balzeau',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Benno',
-            'lastname' => 'Tuchschmid',
+            'fullname' => 'Benno Tuchschmid',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Balz',
-            'lastname' => 'Spörri',
+            'fullname' => 'Balz Spörri',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'René',
-            'lastname' => 'Staubli',
+            'fullname' => 'René Staubli',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Annie',
-            'lastname' => 'Ernaux',
+            'fullname' => 'Annie Ernaux',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Fabienne',
-            'lastname' => 'Verdier',
+            'fullname' => 'Fabienne Verdier',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Thomas',
-            'lastname' => 'Römer',
+            'fullname' => 'Thomas Römer',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Frank Henry',
-            'lastname' => 'Netter',
+            'fullname' => 'Frank Henry Netter',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Amin',
-            'lastname' => 'Maalouf',
+            'fullname' => 'Amin Maalouf',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Vincent',
-            'lastname' => 'Le Goff',
+            'fullname' => 'Vincent Le Goff',
         ]);
 
         DB::table('authors')->insert([
-            'firstname' => 'Nicolas',
-            'lastname' => 'Wauters',
+            'fullname' => 'Nicolas Wauters',
         ]);
 
         // Pivot table.
