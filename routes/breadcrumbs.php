@@ -22,13 +22,6 @@ Breadcrumbs::for('books.create', function (BreadcrumbTrail $trail) {
 });
 
 // Accueil > Ajouter un livre
-Breadcrumbs::for('books.createWithEAN', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
-    $trail->push('mes livres');
-    $trail->push('nouveau');
-});
-
-// Accueil > Ajouter un livre
 Breadcrumbs::for('books.create.step1', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('mes livres');
@@ -44,7 +37,7 @@ Breadcrumbs::for('search', function (BreadcrumbTrail $trail) {
 });
 
 // Accueil > Profil
-Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('profile');
 });

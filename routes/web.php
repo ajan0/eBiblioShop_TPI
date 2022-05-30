@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/search', [BookController::class, 'search'])->name('search');
 
 // Books
 Route::group(['middleware' => 'auth'], function(){

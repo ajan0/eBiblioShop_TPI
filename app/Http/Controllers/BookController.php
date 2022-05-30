@@ -6,6 +6,7 @@ use App\Http\Requests\CreateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Providers\RouteServiceProvider;
+use App\Repositories\BookRepository;
 use App\Repositories\BooksRepository;
 use App\Services\BookLookup\BookLookup;
 use Illuminate\Http\Request;
@@ -173,7 +174,7 @@ class BookController extends Controller
 
         return view('search')->with([
             'query' => $query,
-            'results' => (new BooksRepository)->search($query, $category),
+            'results' => (new BookRepository)->search($query, $category),
         ]);
     }
 

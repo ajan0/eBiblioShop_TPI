@@ -29,7 +29,7 @@ class BookSeeder extends Seeder
             'cover_path' => 'img/covers/cover_1.jpg',
             'published_at' => Carbon::create(2022,2,1),
             'user_id' => $users->random(),
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
         ]);
 
@@ -43,7 +43,7 @@ class BookSeeder extends Seeder
             'cover_path' => 'img/covers/cover_2.jpg',
             'published_at' => Carbon::create(2021,11,1),
             'user_id' => $users->random(),
-            'category_id' => 1,
+            'category_id' => 2,
             'created_at' => now(),
         ]);
 

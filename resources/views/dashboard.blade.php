@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-6">
                             <h1 class="h5">Information</h1>
-                            <form action="{{ route('dashboard') }}" method="POST">
+                            <form action="{{ route('dashboard.store') }}" method="POST">
                                 @csrf
                                 {{-- Input -> Title --}}
                                 <div class="form-group mb-3">
