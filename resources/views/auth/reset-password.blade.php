@@ -16,19 +16,19 @@
                 <!-- Email Address -->
                 <div>
                     <label for="email">Email</label>
-                    <x-input type="email" name="email" placeholder="nom@exemple.com" value="{{ request()->email }}" />
+                    <x-inputs.field type="email" name="email" placeholder="nom@exemple.com" value="{{ request()->email }}" />
                 </div>
 
                 <!-- Password -->
                 <div class="mt-3">
                     <label for="password">Nouveau mot de passe</label>
-                    <x-input type="password" name="password" />
+                    <x-inputs.field type="password" name="password" />
                 </div>
 
                 <!-- Confirm Password -->
                 <div class="mt-3">
                     <label for="password_confirmation">Confirmation du mot de passe</label>
-                    <x-input type="password" name="password_confirmation" />
+                    <x-inputs.field type="password" name="password_confirmation" />
                 </div>
 
                 <button class="btn btn-primary w-100 my-4" type="submit">

@@ -1,9 +1,15 @@
 .book-cover {
     width: 200px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
 }
 
 .book-cover-sm {
     width: 136px;
     height: 210px;
     object-fit: cover;
+    transition: transform 0.1s ease-in;
+
+    &:hover {
+        transform: scale(1.03);
+    }
 }

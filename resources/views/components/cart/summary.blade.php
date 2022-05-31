@@ -11,7 +11,7 @@
                 <div>
                     <h2 class="h6 mb-1">Livraison</h2>
                     @can('make-purchase')
-                        <x-address :address="Auth::user()->addresses->first()->address" :multiline="true" />
+                        <x-address id="selectedAddress" :address="Auth::user()->addresses->first()->address" :multiline="true" />
                     @else
                         <strong class="fw-500 small">Vous devez <a href="{{ route('dashboard.index') }}">enregistrer une adresse de livraison</a> avant de continuer la commande.</strong>
                     @endcan
@@ -35,9 +35,12 @@
             </li>
         </ul>
         <div class="card-body">
-            <form action="{{-- TODO --}}" method="post">
+            <form action="{{ route('payments.store') }}" method="post">
                 @csrf
-                <button type="submit" class="btn btn-primary btn-sm w-100" @if(Gate::check('make-purchase') || Cart::count() < 1) disabled @endif>Acheter maintenant</button>
+                @can('make-purchase')
+                    <input type="hidden" name="shipping_address_id" value="{{ Auth::user()->addresses->first()->address->id }}">
+                @endcan
+                <button type="submit" class="btn btn-primary btn-sm w-100" @if(Auth::user()->cannot('make-purchase') || Cart::count() < 1) disabled @endif>Acheter maintenant</button>
             </form>
         </div>
     </div>

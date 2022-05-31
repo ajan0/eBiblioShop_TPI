@@ -1,4 +1,4 @@
-<x-app-layout :showBreadcrumbs="true">
+<x-app-layout :showCategories="false" :showBreadcrumbs="true">
     {{-- Top row --}}
     <div class="row mt-4">
         <div class="col-2">
@@ -24,18 +24,18 @@
     {{-- Tabs --}}
     <div class="row mt-5">
         <div class="col">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#account" data-bs-toggle="list" role="tab">Compte</a>
+                    <button class="nav-link active" href="#account" data-bs-target="#account" data-bs-toggle="tab" role="tab">Compte</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#books" data-bs-toggle="list" role="tab">Mes livres</a>
+                    <button class="nav-link" href="#books" data-bs-target="#books" data-bs-toggle="tab" role="tab">Mes livres</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#orders" data-bs-toggle="list" role="tab">Achats</a>
+                    <button class="nav-link" href="#orders" data-bs-target="#orders" data-bs-toggle="tab" role="tab">Achats</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('addresses.index') }}" data-bs-toggle="list" role="tab">Adresses</a>
+                    <button class="nav-link" href="#addresses" data-bs-target="#addresses" data-bs-toggle="tab" role="tab">Adresses</button>
                 </li>
             </ul>
             <div class="tab-content">
@@ -44,39 +44,39 @@
                     <div class="row">
                         <div class="col-6">
                             <h1 class="h5">Information</h1>
-                            <form action="{{ route('dashboard') }}" method="POST">
+                            <form action="{{ route('dashboard.index') }}" method="POST">
                                 @csrf
                                 {{-- Input -> Title --}}
                                 <div class="form-group mb-3">
                                     <label class="text-gray py-2" for="">Titre</label>
-                                    <select class="form-select" name="gender">
+                                    <x-inputs.select name="gender">
                                         <option value="male" {{ auth()->user()->gender === 'male' ? 'selected' : '' }}>M.</option>
                                         <option value="female" {{ auth()->user()->gender === 'female' ? 'selected' : '' }}>Mme</option>
                                         <option value="other" {{ auth()->user()->gender === 'other' ? 'selected' : '' }}>Autre</option>
-                                    </select>
+                                    </x-inputs.select>
                                 </div>
 
                                 {{-- Input -> Firstname --}}
                                 <div class="form-group mb-3">
                                     <label class="text-gray py-2" for="">Prénom</label>
-                                    <x-input type="text" name="firstname" value="{{ auth()->user()->firstname }}" />
+                                    <x-inputs.field type="text" name="firstname" value="{{ auth()->user()->firstname }}" />
                                 </div>
 
                                 {{-- Input -> Lastname --}}
                                 <div class="form-group mb-3">
                                     <label class="text-gray py-2" for="">Nom</label>
-                                    <x-input type="text" name="lastname" value="{{ auth()->user()->lastname }}" />
+                                    <x-inputs.field type="text" name="lastname" value="{{ auth()->user()->lastname }}" />
                                 </div>
                                 
                                 {{-- Input -> email --}}
                                 <div class="form-group mb-3">
                                     <label class="text-gray py-2">Adresse e-mail privée</label>
-                                    <input type="text" class="form-control" value="{{ auth()->user()->email }}" disabled>
+                                    <x-inputs.field type="text" value="{{ auth()->user()->email }}" disabled />
                                 </div>
 
                                 <div class="from-group d-flex">
                                     <input class="btn btn-primary btn-sm ms-auto" type="submit" value="Enregistrer">
-                                </div>  
+                                </div>
                             </form>
                         </div>
                         <div class="col-6">
@@ -88,13 +88,21 @@
                     </div>
                     
                 </div>
+                {{-- Mes livres --}}
                 <div class="tab-pane fade py-4" id="books" role="tabpanel">
                     <div class="row">
                         <div class="col-6">
                             <h1 class="h5 mb-4">Mes livres</h1>
                             <p>Vous trouverez toutes les informations concernant vos livres dans l’aperçu du livre. Vous pouvez vous y informer du statut. Vous avez des questions? Alors rendez-vous sur notre page de contact.</p>     
                         </div>
-                        {{-- TODO --}}
+                        {{-- List all commandes --}}
+                        <div class="row my-3">
+                            <div class="col-9">
+                                @foreach (Auth::user()->books as $book)
+                                    <x-books.item :book="$book" />                                    
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane fade py-4" id="orders" role="tabpanel">
@@ -104,15 +112,18 @@
                             <p>Vous trouverez toutes les informations concernant vos commandes dans l’aperçu de la commande. Vous pouvez vous y informer du statut ou y modifier les commandes. Vous avez des questions? Alors rendez-vous sur notre page de contact.</p>
                         </div>
                     </div>
-                    
                     {{-- List all commandes --}}
                     <div class="row my-3">
                         <div class="col-9">
                             @foreach (Auth::user()->orders as $order)
-                                <x-orders.overview :order="$order" />
+                                <x-orders.overview :order="$order" />                                
                             @endforeach
                         </div>
                     </div>
+                </div>
+                <div class="tab-pane fade py-4" id="addresses" role="tabpanel">
+                    {{-- Addresses --}}
+                    @yield('addresses')
                 </div>
             </div>
         </div>

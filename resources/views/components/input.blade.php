@@ -7,7 +7,9 @@
                 class="form-control @error($name) is-invalid @enderror"
                 @if($attributes->has('placeholder')) placeholder="{{ $attributes->get('placeholder')}}" @endif
                 rows="{{ $rows ?? 5 }}"
-    >{{ $value ?? old($name) }}</textarea>
+    >
+        {{ $value ?? old($name) }}
+    </textarea>
     
 @else
     <input  type="{{ $type }}"

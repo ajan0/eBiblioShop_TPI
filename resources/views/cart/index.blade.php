@@ -54,10 +54,10 @@
                                 @forelse (Auth::user()->addresses as $address)
                                     <div class="d-flex ms-3 py-3 border-top">
                                         <div class="me-3">
-                                            <input type="radio" name="default_shipping_address" class="form-check-input mt-1 me-1" style="width:16px;height:16px;" {{ $address->is_default ? 'checked' : null }}>
+                                            <input type="radio" name="shipping_address" data-id="{{ $address->id }}" class="form-check-input mt-1 me-1" style="width:16px;height:16px;" {{ $address->is_default ? 'checked' : null }}>
                                         </div>
                                         <div>
-                                            <x-address :address="$address->address" :multiline="true" />
+                                            <x-address id="availableAddress{{$address->id}}" :address="$address->address" :multiline="true" />
                                         </div>
                                     </div>
                                 @empty
@@ -89,4 +89,22 @@
             <x-cart.summary />
         </div>
     </div>
+    @push('scripts')
+    <script>
+        const addresses = document.querySelectorAll('input[name=shipping_address]')
+        const shippingAddressInput = document.querySelector('input[name=shipping_address_id]')
+        const selectedAddress = document.querySelector('#selectedAddress')
+
+        if (addresses && shippingAddressInput && selectedAddress)
+        {
+            addresses.forEach(address => {
+                address.onchange = (e) => {
+                    shippingAddressInput.value = e.srcElement.dataset.id
+                    selectedAddress.innerHTML = document.querySelector('#availableAddress' + e.srcElement.dataset.id).innerHTML
+                }
+            })
+        }
+    
+    </script>
+    @endpush
 </x-app-layout>

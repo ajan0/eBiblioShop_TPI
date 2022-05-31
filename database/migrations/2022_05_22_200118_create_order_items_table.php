@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->integer('total')->unsigned();
             $table->integer('quantity')->unsigned();
+            $table->string('status', 10)->default('pending');
             $table->foreignId('book_id')->constrained();
             $table->foreignId('order_id')->constrained();
             $table->timestamp('created_at');

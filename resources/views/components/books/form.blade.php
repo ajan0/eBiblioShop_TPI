@@ -108,7 +108,7 @@
         <div class="row mb-3">
             <div class="col-6">
                 <label class="form-label">ISBN*</label>
-                <x-inputs.field type="number" name="isbn" value="{{ old('isbn', $isbn ?? '') }}" :readonly="$bookProvided && isset($book->isbn)" />
+                <x-inputs.field type="number" name="isbn" value="{{ old('isbn', $isbn ?? $book->isbn ?? '') }}" :readonly="$bookProvided && isset($book->isbn)" />
                 {{-- <x-input type="number" name="isbn" placeholder="Ex: 9782828920036" :readonly="$readonly" value="{{ $book->isbn ?? '' }}" /> --}}
             </div>
 

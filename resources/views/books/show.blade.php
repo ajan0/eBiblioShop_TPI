@@ -14,7 +14,7 @@
         <div class="col-9">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#summary">Sommaire</a>
+                    <a class="nav-link active" href="#summary">Résumé</a>
                 </li>
                 @if ($book->description_author)
                     <li class="nav-item">

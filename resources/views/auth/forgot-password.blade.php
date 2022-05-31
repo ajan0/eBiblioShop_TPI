@@ -11,7 +11,7 @@
                 <form method="POST" action="{{ url('forgot-password') }}">
                 @csrf        
                 <!-- Email Address -->
-                <x-input type="email" name="email" placeholder="Adresse e-mail" />
+                <x-inputs.field type="email" name="email" placeholder="Adresse e-mail" />
                 {{-- <input id="email" class="form-control d-block mt-1 w-100" type="email" name="email" value="{{ old('email') }}" placeholder="Adresse e-mail" required autofocus/> --}}
                 
                 <div class="my-3">

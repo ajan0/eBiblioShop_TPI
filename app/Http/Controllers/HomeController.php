@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\BookRepository;
+use App\Repositories\BooksRepository;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -10,15 +11,15 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->bookRepository = new BookRepository();
+        $this->booksRepository = new BooksRepository();
     }
 
     public function index()
     {
         return view('home')->with([
-            'book_feautred' => $this->bookRepository->featured(),
-            'books_free' => $this->bookRepository->allFree(),
-            'books_recent' => $this->bookRepository->allRecent(),
+            'book_feautred' => $this->booksRepository->featured(),
+            'books_free' => $this->booksRepository->allFree(),
+            'books_recent' => $this->booksRepository->allRecent(),
         ]);
     }
 }

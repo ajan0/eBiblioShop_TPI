@@ -42,6 +42,26 @@ Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
     $trail->push('profile');
 });
 
+// Accueil > Profil > addresses
+Breadcrumbs::for('addresses.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('profile', route('dashboard.index'));
+    $trail->push('adresses', route('addresses.index'));
+});
+
+// Accueil > Profil > addresses > créer
+Breadcrumbs::for('addresses.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('addresses.index');
+    $trail->push('ajouter');
+});
+
+// Accueil > Profil > addresses > modifier
+Breadcrumbs::for('addresses.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('addresses.index');
+    $trail->push('modifier');
+});
+
+
 // Accueil > Cart
 Breadcrumbs::for('cart.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

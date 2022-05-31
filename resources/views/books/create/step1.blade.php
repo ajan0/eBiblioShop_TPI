@@ -8,7 +8,7 @@
                     <p>Nous pouvons vous faciliter la démarche de l'ajout des informations de votre livre. Si vous avez le numéro ISBN de votre livre, indiquez-le pour qu'on puisse automatiquement remplir toutes les informations nécessaires par rapport au livre.</p>                    
                     <form action="{{ route('books.store.step1') }}" method="post">
                         @csrf
-                        <x-input name="isbn" type="number" maxlength="13" placeholder="Ex: 9782828920036" />
+                        <x-inputs.field name="isbn" type="number" maxlength="13" placeholder="Ex: 9782828920036" />
                         <button type="submit" class="btn btn-primary my-2 w-100">Suivant</button>
                     </form>
                 </div>

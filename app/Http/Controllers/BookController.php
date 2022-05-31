@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Editor;
+use App\Providers\AppServiceProvider;
 use App\Providers\RouteServiceProvider;
-use App\Repositories\BookRepository;
+use App\Repositories\BooksRepository;
 use App\Services\BookLookup\BookLookup;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -181,7 +184,7 @@ class BookController extends Controller
 
         return view('search')->with([
             'query' => $query,
-            'results' => (new BookRepository)->search($query, $category),
+            'results' => (new BooksRepository)->search($query, $category),
         ]);
     }
 
