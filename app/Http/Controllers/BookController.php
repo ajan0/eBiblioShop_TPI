@@ -95,8 +95,8 @@ class BookController extends Controller
     public function store(CreateBookRequest $request)
     {
         $providedBook = session('searchedBook');
-        $book = new Book;
-        $book->fill($request->validated());
+        $book = (new Book)->fill($request->validated());
+        $book->price = $book->price * 100;
 
         // The cover field is passed conditionally. When the API provide a cover,
         // the `cover` rule is omitted as so we need to make sure that a cover was passed to the request.
