@@ -24,7 +24,8 @@ class CreateBookRequest extends FormRequest
     protected function prepareForValidation()
     {
         // Force processing data provided by the API rather than that obtained
-        // from readonly fields.
+        // from readonly fields. This safety measure prevents data manipluation
+        // from clients.
         if(session()->has('searchedBook'))
         {
             $searchedBook = session('searchedBook');
@@ -54,6 +55,12 @@ class CreateBookRequest extends FormRequest
         if (!$this->request->has('cover_path'))
         {
             $rules['cover'] = 'required|image|max:512';
+        }
+
+        // If authors information were not provided by the API, the user must provide them.
+        if (!$this->request->has('authors'))
+        {
+            $rules['authors[]'] = 'required|array|min:1';
         }
 
         return $rules;

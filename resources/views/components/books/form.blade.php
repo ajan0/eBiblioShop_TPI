@@ -19,22 +19,22 @@
             <div class="col-{{$coverProvided ? '8' : '12'}}">
                 <div class="mb-3">
                     <label class="form-label">Titre*</label>
-                    <x-inputs.field type="text" name="title" :value="$book->title ?? ''" :readonly="isset($book->title)" />
+                    <x-inputs.field type="text" name="title" :value="old('title', $book->title ?? '')" :readonly="isset($book->title)" />
                 </div>
                 <div class="mb-3 row">
                     <div class="col-6">
                         <label class="form-label">Nombre de page*</label>
-                        <x-inputs.field type="number" name="pages_num" min="0" :value="$book->pages_num ?? ''" :readonly="isset($book->pages_num)" />
+                        <x-inputs.field type="number" name="pages_num" min="0" :value="old('pages_num', $book->pages_num ?? '')" :readonly="isset($book->pages_num)" />
                     </div>
                     <div class="col-6">
                         <label class="form-label">Date de parution*</label>
-                        <x-inputs.field type="date" name="published_at" :value="isset($book->published_at) ? $book->published_at->format('Y-m-d') : ''" :readonly="isset($book->published_at)"/>
+                        <x-inputs.field type="date" name="published_at" :value="old('published_at', isset($book->published_at) ? $book->published_at->format('Y-m-d') : '')" :readonly="isset($book->published_at)"/>
                     </div>
                 </div>
         
                 <div class="mb-4">
                     <label class="form-label">Résumé*</label>
-                    <x-inputs.textarea name="description" rows="6" :value="$book->description ?? ''" :readonly="isset($book->description)" />
+                    <x-inputs.textarea name="description" rows="6" :value="old('description', $book->description ?? '')" :readonly="isset($book->description)" />
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="mb-4">
-                <x-inputs.select name="author" class="form-select form-select" multiple>
+                <x-inputs.select name="authors[]" class="form-select form-select" multiple>
                     @foreach ($authors as $author)
                         <option value="{{ $author->id }}">{{ $author->fullname }}</option>
                     @endforeach
@@ -98,17 +98,17 @@
         <div class="row mb-3">
             <div class="col-6">
                 <label class="form-label">Prix*</label>
-                <x-inputs.field type="number" name="price" value="0" min="0" />
+                <x-inputs.field type="number" name="price" value="{{ old('price', $price ?? 0) }}" min="0" />
             </div>
             <div class="col-6">
                 <label class="form-label">Quantité*</label>
-                <x-inputs.field type="number" name="quantity" value="1" min="1" />
+                <x-inputs.field type="number" name="quantity" value="{{ old('quantity', $quantity ?? 1) }}" min="1" />
             </div>
         </div>                        
         <div class="row mb-3">
             <div class="col-6">
                 <label class="form-label">ISBN*</label>
-                <x-inputs.field type="number" name="isbn" value="{{ $book->isbn ?? '' }}" :readonly="isset($book->isbn)" />
+                <x-inputs.field type="number" name="isbn" value="{{ old('isbn', $isbn ?? '') }}" :readonly="$bookProvided && isset($book->isbn)" />
                 {{-- <x-input type="number" name="isbn" placeholder="Ex: 9782828920036" :readonly="$readonly" value="{{ $book->isbn ?? '' }}" /> --}}
             </div>
 

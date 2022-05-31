@@ -7,7 +7,6 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\BookRepository;
-use App\Repositories\BooksRepository;
 use App\Services\BookLookup\BookLookup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +54,6 @@ class BookController extends Controller
         $isbn = $validated['isbn'];
         $bookData = $api->search($isbn);
 
-        // If the APIs found information about the book.
         if ($bookData)
         {
             $book = new Book;
@@ -70,7 +68,6 @@ class BookController extends Controller
             }
 
             // Download the cover.
-            // TODO: seperate this logic in `services`.
             $response = Http::get("https://covers.openlibrary.org/b/isbn/$isbn-M.jpg");
             
             if (    $response->ok()
@@ -114,16 +111,26 @@ class BookController extends Controller
         $book->user()->associate(Auth::user());
         
         $book->save();
-
-        // Associate the authors.
+        
+        // Associate the book's author(s).
         $author_ids = [];
-        foreach ($providedBook->authors as $author_fullname)
+
+        // If authors were provided by the API.
+        if (isset($providedBook->authors))
         {
-            $author = Author::firstOrCreate(['fullname' => $author_fullname]);
-            $author_ids[] = $author->id;
+            foreach ($providedBook->authors as $author_fullname)
+            {
+                $author = Author::firstOrCreate(['fullname' => $author_fullname]);
+                $author_ids[] = $author->id;
+            }
+            $book->authors()->sync($author_ids);
+        }
+        // If not provided by the API, sync from the form request.
+        else
+        {
+            $book->authors()->sync($request->authors);
         }
 
-        $book->authors()->sync($author_ids);
 
         if (session()->has('searchedBook'))
         {
@@ -186,7 +193,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        abort_if(Auth::user()->cannot('delete', $book), 401);
+        abort_if(Auth::user()->cannot('delete', $book), 403);
 
         if ($book->delete())
         {
