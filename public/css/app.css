@@ -11323,12 +11323,17 @@ textarea.form-control-lg {
   font-weight: 600 !important;
 }
 
+.fw-500 {
+  font-weight: 500 !important;
+}
+
 .bg-gray {
   background-color: #f8f9fa !important;
 }
 
 .book-cover {
   width: 200px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .book-cover-sm {
@@ -11336,6 +11341,10 @@ textarea.form-control-lg {
   height: 210px;
   -o-object-fit: cover;
      object-fit: cover;
+  transition: transform 0.1s ease-in;
+}
+.book-cover-sm:hover {
+  transform: scale(1.03);
 }
 
 .material-icons.md-18 {
