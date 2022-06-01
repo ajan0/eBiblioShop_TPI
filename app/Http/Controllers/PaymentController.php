@@ -67,36 +67,43 @@ class PaymentController extends Controller
         }
         session(['orderItems' => $orderItems]);
 
-        $itemsFormatted = $orderItems->map(function($orderItem){
-            return [
-                'price_data' => [
-                    'product_data' => [
-                        'name' => $orderItem->book->title
+        if ($order->total > 0)
+        {
+            $itemsFormatted = $orderItems->map(function($orderItem){
+                return [
+                    'price_data' => [
+                        'product_data' => [
+                            'name' => $orderItem->book->title
+                        ],
+                        'currency' => 'chf',
+                        'unit_amount' => $orderItem->book->price,
+                        'tax_behavior' => 'inclusive'
                     ],
-                    'currency' => 'chf',
-                    'unit_amount' => $orderItem->book->price,
-                    'tax_behavior' => 'inclusive'
+                    'quantity' => $orderItem->quantity,
+                ];
+            })->toArray();
+
+            // Create a stripe checkout session.
+            \Stripe\Stripe::setApiKey("sk_test_51KygB7JqA77dLRtTLmhMdHhgDcHwMnxbqVreDE9GMwqTKLJiLqGvQ8HIdE3KUH6my5AEn3FKSUn9CTVp0zV36MOF00winuxjD5");
+            
+            $session = \Stripe\Checkout\Session::create([
+                'line_items' => $itemsFormatted,
+                'shipping' => [
+                    'address' => $shippingAddress->full
                 ],
-                'quantity' => $orderItem->quantity,
-            ];
-        })->toArray();
+                'mode' => 'payment',
+                'customer_email' => Auth::user()->email,
+                'locale' => 'fr',
+                'success_url' => 'http://127.0.0.1:8000/pay/process',
+                'cancel_url' => 'https://example.com/cancel',
+            ]);
 
-        // Create a stripe checkout session.
-        \Stripe\Stripe::setApiKey("sk_test_51KygB7JqA77dLRtTLmhMdHhgDcHwMnxbqVreDE9GMwqTKLJiLqGvQ8HIdE3KUH6my5AEn3FKSUn9CTVp0zV36MOF00winuxjD5");
-        
-        $session = \Stripe\Checkout\Session::create([
-            'line_items' => $itemsFormatted,
-            'shipping' => [
-                'address' => $shippingAddress->full
-            ],
-            'mode' => 'payment',
-            'customer_email' => Auth::user()->email,
-            'locale' => 'fr',
-            'success_url' => 'http://127.0.0.1:8000/pay/process',
-            'cancel_url' => 'https://example.com/cancel',
-          ]);
-
-        return redirect($session->url);
+            return redirect($session->url);
+        }
+        else
+        {
+            return redirect()->route('payments.process');
+        }
     }
 
     public function createSession()
