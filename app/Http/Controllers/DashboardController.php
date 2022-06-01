@@ -9,7 +9,22 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index');
+        return redirect()->route('dashboard.indexAccount');
+    }
+    
+    public function indexAccount()
+    {
+        return view('dashboard.account');
+    }
+    
+    public function indexBooks()
+    {
+        return view('dashboard.books')->with('books', Auth::user()->books);
+    }
+    
+    public function indexOrders()
+    {
+        return view('dashboard.orders')->with('books', Auth::user()->orders);
     }
 
     public function store(UpdateUserInfoRequest $request)

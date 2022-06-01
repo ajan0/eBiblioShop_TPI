@@ -90,7 +90,9 @@
         </div>
     </div>
     @push('scripts')
+    {{-- <script src="https://js.stripe.com/v3/"></script> --}}
     <script>
+        // Address
         const addresses = document.querySelectorAll('input[name=shipping_address]')
         const shippingAddressInput = document.querySelector('input[name=shipping_address_id]')
         const selectedAddress = document.querySelector('#selectedAddress')
@@ -104,7 +106,7 @@
                 }
             })
         }
-    
+
     </script>
     @endpush
 </x-app-layout>

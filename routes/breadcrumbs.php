@@ -37,9 +37,24 @@ Breadcrumbs::for('search', function (BreadcrumbTrail $trail) {
 });
 
 // Accueil > Profil
-Breadcrumbs::for('dashboard.index', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('dashboard.indexAccount', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('profile');
+    $trail->push('compte');
+});
+
+// Accueil > Profil
+Breadcrumbs::for('dashboard.indexBooks', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('profile');
+    $trail->push('mes livres');
+});
+
+// Accueil > Profil
+Breadcrumbs::for('dashboard.indexOrders', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('profile');
+    $trail->push('achats');
 });
 
 // Accueil > Profil > addresses

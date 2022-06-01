@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Verify that the user has registered an addresses before making purchases.
         Gate::define('make-purchase', function(User $user) {
-            return $user->addresses()->exists();
+            return $user->shippingAddress()->exists();
         });
     }
 }

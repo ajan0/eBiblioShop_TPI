@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateAddressRequest;
 use App\Models\Address;
 use App\Models\CustomerAddress;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerAddressController extends Controller
@@ -34,6 +33,11 @@ class CustomerAddressController extends Controller
         $customerAddress->type = 'shipping';
         $customerAddress->address()->associate($address);
         $customerAddress->user()->associate(Auth::user());
+
+        // Decide to make it the default address in case
+        // this is the first address the user is creating.
+        $customerAddress->is_default = Auth::user()->shippingAddress == null;
+
         $customerAddress->save();
 
         return redirect()->route('addresses.index');

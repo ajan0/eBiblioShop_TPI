@@ -1,4 +1,4 @@
-<article class="row border-bottom py-3 me-3">
+<article class="row border-top py-3 me-3">
     {{-- Description --}}
     <div class="col-1">
         <a href="{{ route('books.show', $book) }}">
@@ -18,19 +18,11 @@
         </div>
     </div>
     {{-- Quantity --}}
-    <div class="col-1 text-center">
+    <div class="col-2 text-center">
         {{ $book->quantity }}
     </div>
     {{-- Price --}}
     <div class="col-2 text-center">
-        {{ $book->price ?? 'Gratuit' }}
-    </div>
-    {{-- Subtotal --}}
-    <div class="col-2 text-center">
-        CHF 30.-
-    </div>
-    {{-- State --}}
-    <div class="col-2 text-center">
-        Shipped
+        <x-pricetag :amount="$book->price" />
     </div>
 </article>

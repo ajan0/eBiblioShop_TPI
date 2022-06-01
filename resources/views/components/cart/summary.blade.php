@@ -13,7 +13,7 @@
                     @can('make-purchase')
                         <x-address id="selectedAddress" :address="Auth::user()->addresses->first()->address" :multiline="true" />
                     @else
-                        <strong class="fw-500 small">Vous devez <a href="{{ route('dashboard.index') }}">enregistrer une adresse de livraison</a> avant de continuer la commande.</strong>
+                        <strong class="fw-500 small">Vous devez <a href="{{ route('addresses.create') }}">enregistrer une adresse de livraison</a> avant de continuer la commande.</strong>
                     @endcan
                 </div>
             @else
@@ -26,19 +26,19 @@
                 <x-pricetag :amount="Cart::subtotal()" />
             </li>
             <li class="list-group-item d-flex py-2 px-3">
-                <span class="me-auto small">TVA excl.</span>
+                <span class="me-auto small">TVA incl.</span>
                 <x-pricetag :amount="Cart::tax()" :show-free-tag="false" />
             </li>
             <li class="list-group-item d-flex py-2 px-3">
                 <span class="fw-bolder me-auto">Total</span>
-                <x-pricetag :amount="Cart::total()" />
+                <x-pricetag :amount="Cart::initial()" />
             </li>
         </ul>
         <div class="card-body">
             <form action="{{ route('payments.store') }}" method="post">
                 @csrf
                 @can('make-purchase')
-                    <input type="hidden" name="shipping_address_id" value="{{ Auth::user()->addresses->first()->address->id }}">
+                    <input type="hidden" name="shipping_address_id" value="{{ Auth::user()->shippingAddress->id }}">
                 @endcan
                 <button type="submit" class="btn btn-primary btn-sm w-100" @if(Auth::user()->cannot('make-purchase') || Cart::count() < 1) disabled @endif>Acheter maintenant</button>
             </form>

@@ -38,7 +38,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::prefix('dashboard')->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::post('/', [DashboardController::class, 'store'])->name('dashboard.store');
-
+        
+        // Account
+        Route::get('/account', [DashboardController::class, 'indexAccount'])->name('dashboard.indexAccount');
+        // Books
+        Route::get('/books', [DashboardController::class, 'indexBooks'])->name('dashboard.indexBooks');
+        // Orders
+        Route::get('/orders', [DashboardController::class, 'indexOrders'])->name('dashboard.indexOrders');
         // Addresses
         Route::resource('addresses', CustomerAddressController::class);
 
@@ -53,9 +59,10 @@ Route::post('/cart/{book}', [CartController::class, 'store'])->name('cart.store'
 Route::put('/cart/{rowId}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/{rowId}', [CartController::class, 'destroy'])->name('cart.destroy');
 
-
 // Payments
 Route::post('/pay', [PaymentController::class, 'store'])->name('payments.store');
+Route::get('/pay/process', [PaymentController::class, 'process'])->name('payments.process');
+Route::get('/pay/success', [PaymentController::class, 'success'])->name('payments.success');
 
 // Dashboard
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {

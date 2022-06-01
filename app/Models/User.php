@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasHumanNames;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,6 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<string, string>
      */
     protected $casts = [
+        'is_admin' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
 
@@ -60,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(CustomerAddress::class)->with('address');
     }
 
-    public function shipping_address()
+    public function shippingAddress()
     {
         return $this->hasOne(CustomerAddress::class)->with('address')->where(['type' => 'shipping', 'is_default' => true]);
     }
