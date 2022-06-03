@@ -1,5 +1,6 @@
 @php
     $book = $orderItem->book;
+    $readonly = $readonly ?? true;
 @endphp
 
 <article class="border-top">
@@ -31,8 +32,41 @@
             <x-pricetag :amount="$orderItem->total / 100" />
         </div>
         {{-- State --}}
-        <div class="col-2 text-center">
-            {{ trans($orderItem->status) }}
+        <div class="col-3 text-center">
+            {{-- If the user can modify the state. --}}
+            @if ($orderItem->status === 'done')
+                <span class="text-success">{{ trans($orderItem->status) }}</span>
+            @elseif (auth()->user()->can('update-shipped', $orderItem))
+                <form class="order-status-select" action="{{ route('orders.updateItem', $orderItem) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <x-inputs.select name="status">
+                        <option value="waiting" @selected($orderItem->status === 'waiting') disabled>{{ trans('waiting') }}</option>
+                        <option value="shipped" @selected($orderItem->status === 'shipped') @disabled($orderItem->status === 'shipped')>{{ trans('shipped') }}</option>
+                    </x-inputs.select>
+                </form>
+            @elseif (auth()->user()->can('update-done', $orderItem) && $orderItem->status === 'shipped')
+            <form class="order-status-select" action="{{ route('orders.updateItem', $orderItem) }}" method="post">
+                @csrf
+                @method('PUT')
+                <x-inputs.select name="status">
+                    <option value="waiting" @selected($orderItem->status === 'waiting') disabled>{{ trans('waiting') }}</option>
+                    <option value="shipped" selected disabled>{{ trans('shipped') }}</option>
+                    <option value="done" @selected($orderItem->status === 'done')>{{ trans('done') }}</option>
+                </x-inputs.select>
+            </form>
+            @else
+                {{ trans($orderItem->status) }}
+            @endcan
         </div>
     </div>    
 </article>
+@once('scripts')
+<script>
+    document.querySelectorAll('.order-status-select').forEach(select => {
+        select.onchange = (e) => {
+            e.srcElement.form.submit();
+        }
+    });
+</script>
+@endonce

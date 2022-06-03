@@ -32,6 +32,9 @@
                 <li class="nav-item {{ str_contains(request()->route()->getName(), 'addresses') ? 'active show' : '' }}">
                     <a class="nav-link" href="{{ route('addresses.index') }}">Adresses</a>
                 </li>
+                <li class="nav-item {{ request()->route()->getName() === 'dashboard.indexSales' ? 'active show' : '' }}">
+                    <a class="nav-link" href="{{ route('dashboard.indexSales') }}">Transactions</a>
+                </li>
             </ul>
             <div class="tab-content">
                 {{ $slot }}

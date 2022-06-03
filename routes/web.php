@@ -5,11 +5,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerAddressController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\SearchController;
-use App\Models\CustomerAddress;
-use App\Services\BookLookup\BookLookup;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,13 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [BookController::class, 'search'])->name('search');
 
-// Books
 Route::group(['middleware' => 'auth'], function(){
+    // Books
     Route::resource('books', BookController::class)->only(['create', 'store', 'destroy']);
     Route::get('/books/create/step1', [BookController::class, 'createStepOne'])->name('books.create.step1');
     Route::post('/books/create/step1', [BookController::class, 'storeStepOne'])->name('books.store.step1');
     Route::delete('/books', [BookController::class, 'destroySaved'])->name('books.destroySaved');
 
+    // Orders
+    Route::put('/orders/item/{orderItem}', [OrderController::class, 'updateItem'])->name('orders.updateItem');
     
     // Dashboard
     Route::prefix('dashboard')->group(function(){
@@ -47,6 +46,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/orders', [DashboardController::class, 'indexOrders'])->name('dashboard.indexOrders');
         // Addresses
         Route::resource('addresses', CustomerAddressController::class);
+        // Sales
+        Route::get('/sales', [DashboardController::class, 'indexSales'])->name('dashboard.indexSales');
 
     });
 });

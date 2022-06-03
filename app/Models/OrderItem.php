@@ -11,9 +11,18 @@ class OrderItem extends Model
 
     const UPDATED_AT = null;
 
+    protected $fillable = [
+        'status'
+    ];
+
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function book_owner()
+    {
+        return $this->book->user();
     }
 
     public function order()

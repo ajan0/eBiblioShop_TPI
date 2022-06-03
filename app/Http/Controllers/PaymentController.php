@@ -27,11 +27,19 @@ class PaymentController extends Controller
 
         // Change items state to `waiting for vendor approval`.
         foreach ($orderItems as $orderItem) {
+            // Update the quantity of each book.
             $orderItem->status = 'waiting';
         }
 
+
         $order->save();
         $order->items()->saveMany($orderItems);
+
+        // Change items state to `waiting for vendor approval`.
+        foreach (Cart::content() as $cartItem) {
+            // Update the quantity of each book.
+            $orderItem->book()->update(['quantity' => $orderItem->book->quantity - $cartItem->qty]);
+        }
 
         Cart::destroy();
 
@@ -48,9 +56,20 @@ class PaymentController extends Controller
         // Get shipping address.
         $shippingAddress = Auth::user()->customerAddresses()->find($request->shipping_address_id);
 
-        abort_if(!$shippingAddress, 401);
+        // Abort if no shipping address provided or if the cart is empty.
+        abort_if(!$shippingAddress || Cart::count() < 1, 401);
 
         // After making sure the shipping address is provided,
+        // we have to make sure the items are in stock.
+        foreach (Cart::content() as $cartItem)
+        {
+            $instock = $cartItem->model->quantity - $cartItem->qty >= 0;
+            if(!$instock)
+            {
+                return back()->withErrors(['stockUnavaiable' => 'Il n\'y a pas assez de stock pour le livre "' . $cartItem->model->title . '".']);
+            }
+        }
+
         // start preparing the order.
         session()->forget('order');
         session()->forget('orderItems');

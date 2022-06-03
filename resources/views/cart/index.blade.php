@@ -1,4 +1,7 @@
 <x-app-layout :showBreadcrumbs="true" :showCategories="true">
+    @error('stockUnavaiable')
+        <div class="alert alert-danger">{{ $message }}</div>        
+    @enderror
     <div class="row">
         <div class="col-9">
             <h1 class="h4 mb-1">Caisse</h1>

@@ -64,6 +64,13 @@ Breadcrumbs::for('addresses.index', function (BreadcrumbTrail $trail) {
     $trail->push('adresses', route('addresses.index'));
 });
 
+// Accueil > Profil > vendus
+Breadcrumbs::for('dashboard.indexSales', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('profile', route('dashboard.index'));
+    $trail->push('vendus', route('dashboard.indexSales'));
+});
+
 // Accueil > Profil > addresses > créer
 Breadcrumbs::for('addresses.create', function (BreadcrumbTrail $trail) {
     $trail->parent('addresses.index');
