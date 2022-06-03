@@ -4,8 +4,8 @@
         {{ $attributes->has('disabled') && $attributes->get('disabled') ? 'disabled' : '' }}
         value="{{ isset($name) ? old($name, $attributes->get('value') ?? '') : null }}"
         />
-@if(isset($name) && $errors->has($name))
-    <span class="text-danger small">{{ $errors->first($name) }}</span>
+@error($name ?? null)
+    <span class="text-danger small">{{ $message }}</span>
 @else
     @isset($description)
         <span class="small text-muted d-block mt-2">
