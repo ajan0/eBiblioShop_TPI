@@ -6,7 +6,7 @@
     </div>
     <div class="row pb-2">
         <div class="col-4">
-            <span>Statut de paiement : payé</span>
+            <span>Statut de paiement : {{ trans($order->status) }}</span>
         </div>
         <div class="col-auto">
             <span>Montant total : <x-pricetag :amount="$order->total / 100" class="fw-bold" /></span>            

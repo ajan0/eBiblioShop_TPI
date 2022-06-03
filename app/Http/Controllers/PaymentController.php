@@ -22,6 +22,14 @@ class PaymentController extends Controller
         $order = session('order');
         $orderItems = session('orderItems');
         
+        // Change order state to paid.
+        $order->status = 'paid';
+
+        // Change items state to `waiting for vendor approval`.
+        foreach ($orderItems as $orderItem) {
+            $orderItem->status = 'waiting';
+        }
+
         $order->save();
         $order->items()->saveMany($orderItems);
 

@@ -32,7 +32,7 @@
         </div>
         {{-- State --}}
         <div class="col-2 text-center">
-            {{ $orderItem->status }}
+            {{ trans($orderItem->status) }}
         </div>
     </div>    
 </article>

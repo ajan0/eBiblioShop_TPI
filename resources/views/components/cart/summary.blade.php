@@ -23,7 +23,7 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex border-0 py-2 px-3">
                 <span class="me-auto">Sous-total</span>
-                <x-pricetag :amount="Cart::subtotal()" />
+                <x-pricetag :amount="Cart::subtotal()" :show-free-tag="false" />
             </li>
             <li class="list-group-item d-flex py-2 px-3">
                 <span class="me-auto small">TVA incl.</span>

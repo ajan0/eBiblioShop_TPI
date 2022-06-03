@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('total')->unsigned();
+            $table->string('status')->default('unpaid');
             $table->foreignId('shipping_address_id')->references('id')->on('addresses')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
