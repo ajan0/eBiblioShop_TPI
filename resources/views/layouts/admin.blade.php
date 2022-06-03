@@ -26,8 +26,8 @@
                   </ul>
             </aside>
         
-            <main class="col-10 ps-4 mt-5">
-
+            <main class="col-10 ps-5 mt-5">
+                {{ $slot }}
             </main>
         </div>
     </div>

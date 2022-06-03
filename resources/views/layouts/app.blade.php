@@ -36,16 +36,23 @@
                 <div class="col-3 d-flex flex-row-reverse align-items-center">
                     {{-- Login button --}}
                     @auth
-                        <a class="text-black dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="text-black dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                             {{ Auth::user()->fullname }}
                         </a>                            
-                        <ul class="dropdown-menu mt-2 py-2" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item py-1" href="{{ route('dashboard.index') }}">Profil</a></li>
+                        <ul class="dropdown-menu mt-2 py-2">
+                            @if (auth()->user()->is_admin)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('admin.index') }}">Administration</a>
+                            </li>
+                            @endif
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard.index') }}">Profil</a>
+                            </li>
                             <li><hr class="dropdown-divider my-1"></li>
                             <li>
                                 <form class="logout-form" method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <a class="dropdown-item py-1" href="#" onclick="document.querySelector('.logout-form').submit()">Déconnexion</a>
+                                    <a class="dropdown-item" href="#" onclick="document.querySelector('.logout-form').submit()">Déconnexion</a>
                                 </form>
                             </li>
                         </ul>

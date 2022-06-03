@@ -17,7 +17,7 @@ class EnsureIsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        abort_unless(Auth::check() && Auth::user()->is_admin == 1, 403);
+        abort_unless(Auth::user()->is_admin, 401);
         
         return $next($request);
     }
