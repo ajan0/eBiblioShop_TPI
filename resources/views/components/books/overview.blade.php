@@ -15,6 +15,11 @@
             <div>Pages : {{ $book->pages_num }}</div>
             <div>Ajouté par : {{ $book->user->fullname }}</div>
             <div>ISBN : {{ $book->isbn }}</div>
+            @if ($book->quantity > 0)
+                <div class="text-success">Quantité: {{ $book->quantity }} disponible.</div>
+            @else         
+                <div class="text-warning">Indisponible pour le moment.</div>       
+            @endif
         </div>
 
         {{-- Pricing --}}
@@ -24,7 +29,9 @@
             </div>
             <div>
                 @cannot('delete', $book)
-                    <x-add-to-cart :item="$book" />
+                    @if ($book->quantity > 0)
+                        <x-add-to-cart :item="$book" />
+                    @endif
                 @else
                     <form action="{{ route('books.destroy', $book) }}" method="post">
                         @csrf
