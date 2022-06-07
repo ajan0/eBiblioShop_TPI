@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserInfoRequest;
+use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,8 +32,14 @@ class DashboardController extends Controller
     public function indexSales()
     {
         // Retrieve all transactions.
-        $sales = OrderItem::whereIn('book_id', [Auth::user()->books->pluck('id')])->get();
-        return view('dashboard.sales')->with('sales', $sales);
+        $transactions = OrderItem::with('order')
+                            ->whereIn('book_id', Auth::user()->books->pluck('id'))
+                            ->get()
+                            ->groupBy(function($orderItem){
+                                return $orderItem->order->created_at->format('d.m.Y');
+                            });
+        
+        return view('dashboard.sales')->with('transactions', $transactions);
     }
 
     public function store(UpdateUserInfoRequest $request)

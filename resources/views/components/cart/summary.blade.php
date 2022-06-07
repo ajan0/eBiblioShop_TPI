@@ -40,7 +40,7 @@
                 @can('make-purchase')
                     <input type="hidden" name="shipping_address_id" value="{{ Auth::user()->shippingAddress->id }}">
                 @endcan
-                <button type="submit" class="btn btn-primary btn-sm w-100" @if(Auth::user()->cannot('make-purchase') || Cart::count() < 1) disabled @endif>Acheter maintenant</button>
+                <button type="submit" class="btn btn-primary btn-sm w-100" @if((Auth::check() && Auth::user()->cannot('make-purchase')) || Cart::count() < 1) disabled @endif>Acheter maintenant</button>
             </form>
         </div>
     </div>

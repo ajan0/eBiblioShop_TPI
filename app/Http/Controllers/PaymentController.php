@@ -121,8 +121,8 @@ class PaymentController extends Controller
                 'mode' => 'payment',
                 'customer_email' => Auth::user()->email,
                 'locale' => 'fr',
-                'success_url' => 'http://127.0.0.1:8000/pay/process',
-                'cancel_url' => 'https://example.com/cancel',
+                'success_url' => url('/pay/process'),
+                'cancel_url' => url('/pay/canceled'),
             ]);
 
             return redirect($session->url);

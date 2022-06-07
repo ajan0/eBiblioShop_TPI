@@ -64,18 +64,13 @@
                     @endauth
 
                     {{-- Shopping cart --}}
-                    <a class="d-flex me-2 position-relative" href="{{ route('cart.index') }}" type="button">
+                    <a class="d-flex me-3 position-relative" href="{{ route('cart.index') }}" type="button">
                         <span class="material-icons">shopping_cart</span>
                         @if (Cart::count() > 0)
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger p-1">
                                 {{ Cart::count() }}
                             </span>                            
                         @endif
-                    </a>
-
-                    {{-- Pinned items --}}
-                    <a class="d-flex me-2" href="" type="button">
-                        <span class="material-icons">push_pin</span>
                     </a>
 
                     {{-- Create new book --}}

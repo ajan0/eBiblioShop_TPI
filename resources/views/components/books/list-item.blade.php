@@ -1,4 +1,4 @@
-<article class="row border-bottom py-5">
+<article class="row border-top py-4">
     {{-- Description --}}
     <div class="col-2">
         <a href="{{ route('books.show', $book) }}">
@@ -24,6 +24,5 @@
     <div class="col-3 px-4 d-flex flex-column justify-content-center align-items-center">
         <x-pricetag :amount="$book->price / 100" class="fw-bold fs-3 text-center my-2" />
         <x-add-to-cart :item="$book" icon="shopping_cart" />
-        <x-add-to-cart :item="$book" instance="wishlist" icon="push_pin" text="Sauvgarder" :outline="true" class="my-2" />
     </div>
 </article>

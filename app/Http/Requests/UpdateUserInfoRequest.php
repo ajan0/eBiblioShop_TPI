@@ -26,8 +26,8 @@ class UpdateUserInfoRequest extends FormRequest
     {
         return [
             'gender' => ['required', Rule::in(['male', 'female', 'other'])],
-            'firstname' => ['required', 'alpha', 'max:100'],
-            'lastname' => ['required', 'alpha', 'max:100'],
+            'firstname' => ['required', 'string', 'max:100'],
+            'lastname' => ['required', 'string', 'max:100'],
         ];
     }
 }

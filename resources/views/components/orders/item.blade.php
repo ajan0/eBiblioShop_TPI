@@ -25,7 +25,7 @@
         </div>
         {{-- Quantity --}}
         <div class="col-1 text-center">
-            {{ $orderItem->quantity }}
+            Qty: {{ $orderItem->quantity }}
         </div>
         {{-- total --}}
         <div class="col-2 text-center">
@@ -57,7 +57,7 @@
             </form>
             @else
                 {{ trans($orderItem->status) }}
-            @endcan
+            @endif
         </div>
     </div>    
 </article>

@@ -8,8 +8,11 @@
     {{-- List all commandes --}}
     <div class="row my-3">
         <div class="col-9">
-            @foreach ($sales as $sale)
-                <x-orders.overview :order="$sale->order" />                                
+            @foreach ($transactions as $date => $items)
+                <h3 class="h6">{{ $date }}</h3>
+                @foreach ($items as $item)
+                    <x-orders.transaction :transaction="$item" />                                
+                @endforeach                
             @endforeach
         </div>
     </div>

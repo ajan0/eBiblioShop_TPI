@@ -24,8 +24,8 @@ class AdminController extends Controller
     {
         $validated = $request->validate([
             'gender' => ['required', Rule::in(['male', 'female', 'other'])],
-            'firstname' => ['required', 'alpha', 'max:100'],
-            'lastname' => ['required', 'alpha', 'max:100'],
+            'firstname' => ['required', 'string', 'max:100'],
+            'lastname' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email']
         ]);
 

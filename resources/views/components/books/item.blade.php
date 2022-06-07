@@ -19,10 +19,10 @@
     </div>
     {{-- Quantity --}}
     <div class="col-2 text-center">
-        {{ $book->quantity }}
+        Qty: {{ $book->quantity }}
     </div>
     {{-- Price --}}
     <div class="col-2 text-center">
-        <x-pricetag :amount="$book->price" />
+        <x-pricetag :amount="$book->price/100" />
     </div>
 </article>

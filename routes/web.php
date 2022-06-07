@@ -24,11 +24,20 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [BookController::class, 'search'])->name('search');
 
 Route::group(['middleware' => 'auth'], function(){
-    // Books
-    Route::resource('books', BookController::class)->only(['create', 'store', 'destroy']);
-    Route::get('/books/create/step1', [BookController::class, 'createStepOne'])->name('books.create.step1');
-    Route::post('/books/create/step1', [BookController::class, 'storeStepOne'])->name('books.store.step1');
-    Route::delete('/books', [BookController::class, 'destroySaved'])->name('books.destroySaved');
+    // only verified users.
+    Route::middleware('verified')->group(function(){
+        // Books
+        Route::resource('books', BookController::class)->only(['create', 'store', 'destroy']);
+        Route::get('/books/create/step1', [BookController::class, 'createStepOne'])->name('books.create.step1');
+        Route::post('/books/create/step1', [BookController::class, 'storeStepOne'])->name('books.store.step1');
+        Route::delete('/books', [BookController::class, 'destroySaved'])->name('books.destroySaved');
+    
+        // Payments
+        Route::post('/pay', [PaymentController::class, 'store'])->name('payments.store');
+        Route::get('/pay/process', [PaymentController::class, 'process'])->name('payments.process');
+        Route::get('/pay/success', [PaymentController::class, 'success'])->name('payments.success');
+        Route::view('/pay/canceled', 'orders.cancel')->name('payments.canceled');
+    });
 
     // Orders
     Route::put('/orders/item/{orderItem}', [OrderController::class, 'updateItem'])->name('orders.updateItem');
@@ -59,11 +68,6 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/{book}', [CartController::class, 'store'])->name('cart.store');
 Route::put('/cart/{rowId}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/{rowId}', [CartController::class, 'destroy'])->name('cart.destroy');
-
-// Payments
-Route::post('/pay', [PaymentController::class, 'store'])->name('payments.store');
-Route::get('/pay/process', [PaymentController::class, 'process'])->name('payments.process');
-Route::get('/pay/success', [PaymentController::class, 'success'])->name('payments.success');
 
 // Dashboard
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
